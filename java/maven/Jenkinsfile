@@ -1,0 +1,19 @@
+pipeline {
+    agent none
+    stages {
+        stage("Build") {
+            agent {
+                docker {
+                    image "pack:latest"
+                }
+            }
+            stages {
+                stage("Build A") {
+                    steps {
+                        sh "pack --version"
+                    }
+                }
+            }
+        }
+    }
+}
