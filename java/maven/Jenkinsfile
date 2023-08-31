@@ -4,7 +4,7 @@ pipeline {
         stage("Build") {
             agent {
                 dockerContainer {
-                    image "pack:latest"
+                    image "buildpacksio/pack:latest"
                 }
             }
             stages {
