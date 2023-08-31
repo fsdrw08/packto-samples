@@ -1,17 +1,19 @@
 pipeline {
-    agent none
+    agent {
+        label "docker-agent"
+    }
     stages {
-        stage("Build") {
-            agent {
-                dockerContainer {
-                    image "buildpacksio/pack:latest"
-                }
-            }
-            stages {
-                stage("Build A") {
-                    steps {
-                        sh "pack --version"
-                    }
+        stage("test") {
+            steps {
+                script {
+                    sh '''
+                    docker run \
+                        --cap-add=CAP_FOWNER \
+                        --tmpfs /tmp:rw \
+                        --workdir /workspace `
+                        --env HOME="/workspace" `
+                        docker.io/buildpacksio/pack:latest --version
+                    '''
                 }
             }
         }
