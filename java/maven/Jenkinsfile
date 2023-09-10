@@ -21,7 +21,7 @@ pipeline {
                             --privileged \
                             --cap-add=SYS_ADMIN \
                             --tmpfs /tmp:rw \
-                            --volume /var/run/docker.sock:/var/run/docker.sock \
+                            --volume /var/run/docker.sock:/var/run/docker.sock:Z \
                             --volume ./java/maven/:/workspace:rw \
                             --workdir /workspace \
                             --env HOME="/workspace" \
