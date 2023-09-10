@@ -17,9 +17,16 @@ pipeline {
                             --rm \
                             --cap-add=CAP_FOWNER \
                             --tmpfs /tmp:rw \
+                            --volume ./java/maven/:/workspace:rw \
                             --workdir /workspace \
                             --env HOME="/workspace" \
-                            docker.io/buildpacksio/pack:latest --version
+                            docker.io/buildpacksio/pack:latest build \
+                                --trust-builder \
+                                paketo-demo-app \
+                                --path . \
+                                --builder docker.io/paketobuildpacks/builder:base \
+                                --buildpack docker.io/paketobuildpacks/java-azure:10
+
                     '''
                 }
             }
