@@ -17,6 +17,7 @@ pipeline {
                             --rm \
                             --cap-add=CAP_FOWNER \
                             --tmpfs /tmp:rw \
+                            --volume /var/run/docker.sock:/var/run/docker.sock \
                             --volume ./java/maven/:/workspace:rw \
                             --workdir /workspace \
                             --env HOME="/workspace" \
