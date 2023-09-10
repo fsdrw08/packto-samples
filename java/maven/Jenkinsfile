@@ -18,6 +18,7 @@ pipeline {
                     sh '''
                         docker run \
                             --rm \
+                            --privileged \
                             --cap-add=SYS_ADMIN \
                             --tmpfs /tmp:rw \
                             --volume /run/user/1001/podman/podman.sock:/var/run/docker.sock \
