@@ -1,8 +1,6 @@
 pipeline {
     agent {
-        node {
-            label "docker-agent"
-        }
+        label "docker-agent"
     }
     stages {
         stage("test") {
@@ -10,6 +8,7 @@ pipeline {
                 script {
                     sh '''
                         docker run \
+                            --rm \
                             --cap-add=CAP_FOWNER \
                             --tmpfs /tmp:rw \
                             --workdir /workspace \
