@@ -7,7 +7,10 @@ pipeline {
             steps {
                 script {
                     sh '''
-                        pwd
+                        whoami
+                    '''
+                    sh '''
+                        ls -al /var/run/docker.sock
                     '''
                     sh '''
                         ls -al
@@ -17,7 +20,7 @@ pipeline {
                             --rm \
                             --cap-add=CAP_FOWNER \
                             --tmpfs /tmp:rw \
-                            --volume /var/run/docker.sock:/var/run/docker.sock \
+                            --volume /var/run/docker.sock:/var/run/docker.sock:rw \
                             --volume ./java/maven/:/workspace:rw \
                             --workdir /workspace \
                             --env HOME="/workspace" \
