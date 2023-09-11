@@ -19,9 +19,8 @@ pipeline {
                         docker run \
                             --rm \
                             --privileged \
-                            --cap-add=SYS_ADMIN \
                             --tmpfs /tmp:rw \
-                            --mount type=bind,source=/var/run/docker.sock,destination=/var/run/docker.sock \
+                            --volume /var/run/docker.sock:/var/run/docker.sock \
                             --volume ./java/maven/:/workspace:rw \
                             --workdir /workspace \
                             --env HOME="/workspace" \
