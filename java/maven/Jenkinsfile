@@ -20,7 +20,7 @@ pipeline {
                             --rm \
                             --privileged \
                             --tmpfs /tmp:rw \
-                            --volume ./go.mod:/var/run/docker.sock \
+                            --volume /run/user/1001/podman/podman.sock:/var/run/docker.sock \
                             --volume ./java/maven/:/workspace:rw \
                             --workdir /workspace \
                             --env HOME="/workspace" \
