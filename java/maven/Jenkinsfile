@@ -18,7 +18,7 @@ pipeline {
                             --privileged \
                             --tmpfs /tmp:rw \
                             --volume /run/user/1001/podman/podman.sock:/var/run/docker.sock \
-                            --volume ./java/maven/:/workspace:rw \
+                            --volume jenkins-workspace:/workspace:rw \
                             --workdir /workspace \
                             --env HOME="/workspace" \
                             docker.io/buildpacksio/pack:latest --version
