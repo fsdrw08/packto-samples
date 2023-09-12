@@ -15,12 +15,12 @@ pipeline {
                     sh '''
                         docker run \
                             --rm \
-                            --privileged \
                             --tmpfs /tmp:rw \
-                            --volume /run/user/1001/podman/podman.sock:/var/run/docker.sock \
+                            --volume /run/user/1001/podman/podman.sock:/run/user/1001/podman/podman.sock \
                             --volume jenkins-workspace:/workspace:rw \
                             --workdir /workspace \
                             --env HOME="/workspace" \
+                            --env DOCKER_HOST="unix://run/user/1001/podman/podman.sock" \
                             docker.io/buildpacksio/pack:latest build \
                                 --trust-builder \
                                 paketo-demo-app \
